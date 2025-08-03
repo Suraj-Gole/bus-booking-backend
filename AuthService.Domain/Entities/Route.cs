@@ -7,6 +7,6 @@
         public required string EndCity { get; set; }
         public double DistanceInKm { get; set; }
         public TimeSpan Duration { get; set; }
-        //public ICollection<Schedule> Schedules { get; set; }
+        public ICollection<Schedule> Schedules { get; set; }
     }
 }

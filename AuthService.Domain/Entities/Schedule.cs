@@ -10,6 +10,6 @@
         public DateTime DepartureTime { get; set; }
         public DateTime ArrivalTime { get; set; }
         public decimal Price { get; set; }
-        //public ICollection<Booking> Bookings { get; set; }
+        public ICollection<Booking> Bookings { get; set; }
     }
 }

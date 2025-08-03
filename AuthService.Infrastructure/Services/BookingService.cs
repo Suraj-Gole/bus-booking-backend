@@ -17,6 +17,8 @@ namespace AuthService.Infrastructure.Services
         public async Task<BookingDto> CreateAsync(CreateBookingRequest request, Guid userId)
         {
             var schedule = await _context.Schedules
+                .Include(s => s.Bus)
+                .Include(s => s.Bookings.Where(b => b.Status == "Booked"))
                 .FirstOrDefaultAsync(s => s.Id == request.ScheduleId);
 
             if (schedule == null)
@@ -27,6 +29,12 @@ namespace AuthService.Infrastructure.Services
 
             if (user == null)
                 throw new Exception("User not found");
+
+            var totalBookedSeats = schedule.Bookings.Sum(b => b.SeatsBooked);
+            var availableSeats = schedule.Bus.Capacity - totalBookedSeats;
+
+            if (request.SeatsBooked > availableSeats)
+                throw new Exception($"Only {availableSeats} seats available");
 
             var totalAmount = schedule.Price * request.SeatsBooked;
 
