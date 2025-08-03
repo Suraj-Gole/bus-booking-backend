@@ -59,11 +59,16 @@ namespace AuthService.Infrastructure.Services
             if (user.PasswordHash != hashedPassword)
                 throw new Exception("Invalid credentials.");
 
+            var key = _config["JwtEncryption:Key"];
+            var iv = _config["JwtEncryption:IV"];
+            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(iv))
+                throw new Exception("JWT encryption key or IV is not configured.");
+
             var rawToken = GenerateJwtToken(user);
             var encryptedToken = JwtEncryptor.Encrypt(
                 rawToken,
-                _config["JwtEncryption:Key"],
-                _config["JwtEncryption:IV"]
+                key,
+                iv
             );
 
             var refreshToken = GenerateRefreshToken();
@@ -85,7 +90,15 @@ namespace AuthService.Infrastructure.Services
 
         private string GenerateJwtToken(User user)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JwtSettings:SecretKey"]));
+            var secretKey = _config["JwtSettings:SecretKey"];
+            if (string.IsNullOrEmpty(secretKey))
+                throw new Exception("JWT secret key is not configured.");
+
+            var expiryMinutesStr = _config["JwtSettings:ExpiryMinutes"];
+            if (string.IsNullOrEmpty(expiryMinutesStr))
+                throw new Exception("JWT expiry minutes is not configured.");
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
@@ -99,7 +112,7 @@ namespace AuthService.Infrastructure.Services
                 issuer: _config["JwtSettings:Issuer"],
                 audience: _config["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(int.Parse(_config["JwtSettings:ExpiryMinutes"])),
+                expires: DateTime.UtcNow.AddMinutes(int.Parse(expiryMinutesStr)),
                 signingCredentials: creds
             );
 
@@ -121,8 +134,13 @@ namespace AuthService.Infrastructure.Services
             if (user == null || user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
                 throw new Exception("Invalid or expired refresh token.");
 
+            var key = _config["JwtEncryption:Key"];
+            var iv = _config["JwtEncryption:IV"];
+            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(iv))
+                throw new Exception("JWT encryption key or IV is not configured.");
+
             var newJwt = GenerateJwtToken(user);
-            var encryptedJwt = JwtEncryptor.Encrypt(newJwt, _config["JwtEncryption:Key"], _config["JwtEncryption:IV"]);
+            var encryptedJwt = JwtEncryptor.Encrypt(newJwt, key, iv);
 
             // Generate a new refresh token too
             user.RefreshToken = GenerateRefreshToken();
