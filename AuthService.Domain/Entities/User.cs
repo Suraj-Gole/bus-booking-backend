@@ -11,7 +11,8 @@
         public string PasswordHash { get; set; }
 
         public string Role { get; set; } = "User"; // User or Admin
-
+        public string RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiryTime { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }
