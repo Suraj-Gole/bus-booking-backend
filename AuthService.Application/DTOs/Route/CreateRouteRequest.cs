@@ -2,9 +2,9 @@
 {
     public class CreateRouteRequest
     {
-        public required string StartCity { get; set; }
-        public required string EndCity { get; set; }
-        public double DistanceInKm { get; set; }
+        public Guid FromCityId { get; set; }
+        public Guid ToCityId { get; set; }
+        public decimal DistanceInKm { get; set; }
         public TimeSpan Duration { get; set; }
     }
 }

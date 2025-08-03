@@ -16,13 +16,16 @@ namespace AuthService.Infrastructure.Services
 
         public async Task<List<RouteDto>> GetAllAsync()
         {
-            var routes = await _context.Routes.ToListAsync();
+            var routes = await _context.Routes
+                .Include(r => r.FromCity)
+                .Include(r => r.ToCity)
+                .ToListAsync();
 
             return routes.Select(r => new RouteDto
             {
                 Id = r.Id,
-                StartCity = r.StartCity,
-                EndCity = r.EndCity,
+                FromCity = r.FromCity!.Name,
+                ToCity = r.ToCity!.Name,
                 DistanceInKm = r.DistanceInKm,
                 Duration = r.Duration
             }).ToList();
@@ -30,15 +33,19 @@ namespace AuthService.Infrastructure.Services
 
         public async Task<RouteDto> GetByIdAsync(Guid id)
         {
-            var route = await _context.Routes.FindAsync(id);
+            var route = await _context.Routes
+                .Include(r => r.FromCity)
+                .Include(r => r.ToCity)
+                .FirstOrDefaultAsync(r => r.Id == id);
+
             if (route == null)
                 throw new Exception("Route not found");
 
             return new RouteDto
             {
                 Id = route.Id,
-                StartCity = route.StartCity,
-                EndCity = route.EndCity,
+                FromCity = route.FromCity!.Name,
+                ToCity = route.ToCity!.Name,
                 DistanceInKm = route.DistanceInKm,
                 Duration = route.Duration
             };
@@ -46,10 +53,19 @@ namespace AuthService.Infrastructure.Services
 
         public async Task<RouteDto> CreateAsync(CreateRouteRequest request)
         {
+            if (request.FromCityId == request.ToCityId)
+                throw new Exception("From and To cities must be different.");
+
+            var fromCity = await _context.Cities.FindAsync(request.FromCityId);
+            var toCity = await _context.Cities.FindAsync(request.ToCityId);
+
+            if (fromCity == null || toCity == null)
+                throw new Exception("One or both cities not found.");
+
             var route = new Route
             {
-                StartCity = request.StartCity,
-                EndCity = request.EndCity,
+                FromCityId = request.FromCityId,
+                ToCityId = request.ToCityId,
                 DistanceInKm = request.DistanceInKm,
                 Duration = request.Duration
             };
@@ -60,8 +76,8 @@ namespace AuthService.Infrastructure.Services
             return new RouteDto
             {
                 Id = route.Id,
-                StartCity = route.StartCity,
-                EndCity = route.EndCity,
+                FromCity = fromCity.Name,
+                ToCity = toCity.Name,
                 DistanceInKm = route.DistanceInKm,
                 Duration = route.Duration
             };
