@@ -3,9 +3,16 @@
     public class Route
     {
         public Guid Id { get; set; } = Guid.NewGuid();
-        public required string StartCity { get; set; }
-        public required string EndCity { get; set; }
-        public double DistanceInKm { get; set; }
-        //public ICollection<Schedule> Schedules { get; set; }
+
+        public Guid FromCityId { get; set; }
+        public City? FromCity { get; set; }
+
+        public Guid ToCityId { get; set; }
+        public City? ToCity { get; set; }
+
+        public decimal DistanceInKm { get; set; }
+        public TimeSpan Duration { get; set; }
+
+        public ICollection<Schedule>? Schedules { get; set; }
     }
 }

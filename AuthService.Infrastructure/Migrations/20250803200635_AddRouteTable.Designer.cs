@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuthService.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250803200635_AddRouteTable")]
+    partial class AddRouteTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,18 +33,11 @@ namespace AuthService.Infrastructure.Migrations
                     b.Property<DateTime>("BookingTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("ScheduleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("SeatsBooked")
+                    b.Property<int>("NumberOfSeats")
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<Guid>("ScheduleId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -77,44 +73,27 @@ namespace AuthService.Infrastructure.Migrations
                     b.ToTable("Buses");
                 });
 
-            modelBuilder.Entity("AuthService.Domain.Entities.City", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cities");
-                });
-
             modelBuilder.Entity("AuthService.Domain.Entities.Route", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("DistanceInKm")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("DistanceInKm")
+                        .HasColumnType("float");
 
                     b.Property<TimeSpan>("Duration")
                         .HasColumnType("time");
 
-                    b.Property<Guid>("FromCityId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("EndCity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ToCityId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("StartCity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FromCityId");
-
-                    b.HasIndex("ToCityId");
 
                     b.ToTable("Routes");
                 });
@@ -188,7 +167,7 @@ namespace AuthService.Infrastructure.Migrations
             modelBuilder.Entity("AuthService.Domain.Entities.Booking", b =>
                 {
                     b.HasOne("AuthService.Domain.Entities.Schedule", "Schedule")
-                        .WithMany("Bookings")
+                        .WithMany()
                         .HasForeignKey("ScheduleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -204,35 +183,16 @@ namespace AuthService.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("AuthService.Domain.Entities.Route", b =>
-                {
-                    b.HasOne("AuthService.Domain.Entities.City", "FromCity")
-                        .WithMany("RoutesFrom")
-                        .HasForeignKey("FromCityId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("AuthService.Domain.Entities.City", "ToCity")
-                        .WithMany("RoutesTo")
-                        .HasForeignKey("ToCityId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("FromCity");
-
-                    b.Navigation("ToCity");
-                });
-
             modelBuilder.Entity("AuthService.Domain.Entities.Schedule", b =>
                 {
                     b.HasOne("AuthService.Domain.Entities.Bus", "Bus")
-                        .WithMany("Schedules")
+                        .WithMany()
                         .HasForeignKey("BusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AuthService.Domain.Entities.Route", "Route")
-                        .WithMany("Schedules")
+                        .WithMany()
                         .HasForeignKey("RouteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -240,28 +200,6 @@ namespace AuthService.Infrastructure.Migrations
                     b.Navigation("Bus");
 
                     b.Navigation("Route");
-                });
-
-            modelBuilder.Entity("AuthService.Domain.Entities.Bus", b =>
-                {
-                    b.Navigation("Schedules");
-                });
-
-            modelBuilder.Entity("AuthService.Domain.Entities.City", b =>
-                {
-                    b.Navigation("RoutesFrom");
-
-                    b.Navigation("RoutesTo");
-                });
-
-            modelBuilder.Entity("AuthService.Domain.Entities.Route", b =>
-                {
-                    b.Navigation("Schedules");
-                });
-
-            modelBuilder.Entity("AuthService.Domain.Entities.Schedule", b =>
-                {
-                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }

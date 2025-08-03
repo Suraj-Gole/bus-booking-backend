@@ -16,5 +16,15 @@
             Data = data;
             Errors = errors;
         }
+
+        public static ResponseDto<T> SuccessResponse(T data, int statusCode = 200, string message = "Success")
+        {
+            return new ResponseDto<T>(statusCode, true, message, data, null);
+        }
+
+        public static ResponseDto<T> FailResponse(string message, int statusCode = 400, object errors = null)
+        {
+            return new ResponseDto<T>(statusCode, false, message, default, errors);
+        }
     }
 }

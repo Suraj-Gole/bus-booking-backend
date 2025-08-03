@@ -1,4 +1,4 @@
-﻿using AuthService.Application.DTOs.Bus;
+﻿using AuthService.Application.DTOs.Schedule;
 using AuthService.Application.Helpers;
 using AuthService.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -8,21 +8,21 @@ namespace AuthService.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BusController : ControllerBase
+    public class ScheduleController : ControllerBase
     {
-        private readonly IBusService _busService;
+        private readonly IScheduleService _scheduleService;
 
-        public BusController(IBusService busService)
+        public ScheduleController(IScheduleService scheduleService)
         {
-            _busService = busService;
+            _scheduleService = scheduleService;
         }
 
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
-            var buses = await _busService.GetAllAsync();
-            var response = ResponseBuilder.Success(buses, "Fetched all buses");
+            var schedules = await _scheduleService.GetAllAsync();
+            var response = ResponseBuilder.Success(schedules, "Fetched all schedules");
             return StatusCode(response.Status, response);
         }
 
@@ -30,17 +30,17 @@ namespace AuthService.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var bus = await _busService.GetByIdAsync(id);
-            var response = ResponseBuilder.Success(bus, "Fetched bus details");
+            var schedule = await _scheduleService.GetByIdAsync(id);
+            var response = ResponseBuilder.Success(schedule, "Fetched schedule details");
             return StatusCode(response.Status, response);
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([FromBody] CreateBusRequest request)
+        public async Task<IActionResult> Create([FromBody] CreateScheduleRequest request)
         {
-            var createdBus = await _busService.CreateAsync(request);
-            var response = ResponseBuilder.Success(createdBus, "Bus created successfully", 201);
+            var schedule = await _scheduleService.CreateAsync(request);
+            var response = ResponseBuilder.Success(schedule, "Schedule created", 201);
             return StatusCode(response.Status, response);
         }
 
@@ -48,8 +48,8 @@ namespace AuthService.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _busService.DeleteAsync(id);
-            var response = ResponseBuilder.Success<object>(null, "Bus deleted successfully", 200);
+            await _scheduleService.DeleteAsync(id);
+            var response = ResponseBuilder.Success<object>(null, "Schedule deleted");
             return StatusCode(response.Status, response);
         }
     }

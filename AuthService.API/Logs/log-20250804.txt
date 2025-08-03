@@ -1,0 +1,830 @@
+2025-08-04 01:37:14.747 +05:30 [INF] User profile is available. Using 'C:\Users\suraj\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-08-04 01:37:15.091 +05:30 [INF] Now listening on: https://localhost:7195
+2025-08-04 01:37:15.093 +05:30 [INF] Now listening on: http://localhost:5253
+2025-08-04 01:37:15.352 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 01:37:15.354 +05:30 [INF] Hosting environment: Development
+2025-08-04 01:37:15.357 +05:30 [INF] Content root path: D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API
+2025-08-04 01:37:15.717 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/ - null null
+2025-08-04 01:37:15.972 +05:30 [INF] Incoming Request: GET /
+2025-08-04 01:37:16.047 +05:30 [INF] Executing endpoint 'HTTP: GET /'
+2025-08-04 01:37:16.049 +05:30 [INF] Executed endpoint 'HTTP: GET /'
+2025-08-04 01:37:16.053 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/ - 302 0 null 345.2832ms
+2025-08-04 01:37:16.110 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-04 01:37:16.120 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_vs/browserLink - null null
+2025-08-04 01:37:16.138 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - 200 16515 application/javascript; charset=utf-8 27.2015ms
+2025-08-04 01:37:16.187 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_vs/browserLink - 200 null text/javascript; charset=UTF-8 67.0987ms
+2025-08-04 01:37:16.241 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - null null
+2025-08-04 01:37:16.272 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 30.5881ms
+2025-08-04 01:37:37.503 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Auth/login - application/json 61
+2025-08-04 01:37:37.511 +05:30 [INF] Incoming Request: POST /api/Auth/login
+2025-08-04 01:37:37.570 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.AuthController.Login (AuthService.API)'
+2025-08-04 01:37:37.630 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(AuthService.Application.DTOs.LoginRequest) on controller AuthService.API.Controllers.AuthController (AuthService.API).
+2025-08-04 01:37:38.331 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Schedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 01:37:39.132 +05:30 [INF] Executed DbCommand (73ms) [Parameters=[@__request_Email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[CreatedAt], [u].[Email], [u].[FullName], [u].[PasswordHash], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__request_Email_0
+2025-08-04 01:37:39.322 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [RefreshToken] = @p0, [RefreshTokenExpiryTime] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2025-08-04 01:37:39.345 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuthService.Application.DTOs.LoginResponse'.
+2025-08-04 01:37:39.359 +05:30 [INF] Executed action AuthService.API.Controllers.AuthController.Login (AuthService.API) in 1722.3012ms
+2025-08-04 01:37:39.363 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.AuthController.Login (AuthService.API)'
+2025-08-04 01:37:39.372 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Auth/login - 200 null application/json; charset=utf-8 1869.2907ms
+2025-08-04 01:38:03.078 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Route - null null
+2025-08-04 01:38:03.091 +05:30 [INF] Incoming Request: GET /api/Route
+2025-08-04 01:38:03.131 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.RouteController.GetAll (AuthService.API)'
+2025-08-04 01:38:03.137 +05:30 [INF] Route matched with {action = "GetAll", controller = "Route"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller AuthService.API.Controllers.RouteController (AuthService.API).
+2025-08-04 01:38:03.180 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[DistanceInKm], [r].[Duration], [r].[EndCity], [r].[StartCity]
+FROM [Routes] AS [r]
+2025-08-04 01:38:03.187 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.Route.RouteDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 01:38:03.198 +05:30 [INF] Executed action AuthService.API.Controllers.RouteController.GetAll (AuthService.API) in 56.7233ms
+2025-08-04 01:38:03.201 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.RouteController.GetAll (AuthService.API)'
+2025-08-04 01:38:03.203 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Route - 200 null application/json; charset=utf-8 125.8495ms
+2025-08-04 01:39:17.626 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Route - application/json 97
+2025-08-04 01:39:17.631 +05:30 [INF] Incoming Request: POST /api/Route
+2025-08-04 01:39:17.640 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.RouteController.Create (AuthService.API)'
+2025-08-04 01:39:17.644 +05:30 [INF] Route matched with {action = "Create", controller = "Route"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.Route.CreateRouteRequest) on controller AuthService.API.Controllers.RouteController (AuthService.API).
+2025-08-04 01:39:17.758 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Double), @p2='?' (DbType = Time), @p3='?' (Size = 4000), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Routes] ([Id], [DistanceInKm], [Duration], [EndCity], [StartCity])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-08-04 01:39:17.765 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.Route.RouteDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 01:39:17.773 +05:30 [INF] Executed action AuthService.API.Controllers.RouteController.Create (AuthService.API) in 124.0602ms
+2025-08-04 01:39:17.780 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.RouteController.Create (AuthService.API)'
+2025-08-04 01:39:17.782 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Route - 201 null application/json; charset=utf-8 156.6445ms
+2025-08-04 01:40:14.681 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Route - null null
+2025-08-04 01:40:14.709 +05:30 [INF] Incoming Request: GET /api/Route
+2025-08-04 01:40:14.712 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.RouteController.GetAll (AuthService.API)'
+2025-08-04 01:40:14.714 +05:30 [INF] Route matched with {action = "GetAll", controller = "Route"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller AuthService.API.Controllers.RouteController (AuthService.API).
+2025-08-04 01:40:14.734 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[DistanceInKm], [r].[Duration], [r].[EndCity], [r].[StartCity]
+FROM [Routes] AS [r]
+2025-08-04 01:40:14.740 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.Route.RouteDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 01:40:14.743 +05:30 [INF] Executed action AuthService.API.Controllers.RouteController.GetAll (AuthService.API) in 25.9191ms
+2025-08-04 01:40:14.750 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.RouteController.GetAll (AuthService.API)'
+2025-08-04 01:40:14.753 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Route - 200 null application/json; charset=utf-8 80.8558ms
+2025-08-04 01:40:27.389 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Route/38c5dbae-d823-4be5-867a-92a7ddb6c588 - null null
+2025-08-04 01:40:27.395 +05:30 [INF] Incoming Request: GET /api/Route/38c5dbae-d823-4be5-867a-92a7ddb6c588
+2025-08-04 01:40:27.398 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.RouteController.GetById (AuthService.API)'
+2025-08-04 01:40:27.403 +05:30 [INF] Route matched with {action = "GetById", controller = "Route"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller AuthService.API.Controllers.RouteController (AuthService.API).
+2025-08-04 01:40:27.458 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[DistanceInKm], [r].[Duration], [r].[EndCity], [r].[StartCity]
+FROM [Routes] AS [r]
+WHERE [r].[Id] = @__p_0
+2025-08-04 01:40:27.463 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.Route.RouteDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 01:40:27.465 +05:30 [INF] Executed action AuthService.API.Controllers.RouteController.GetById (AuthService.API) in 58.5325ms
+2025-08-04 01:40:27.468 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.RouteController.GetById (AuthService.API)'
+2025-08-04 01:40:27.470 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Route/38c5dbae-d823-4be5-867a-92a7ddb6c588 - 200 null application/json; charset=utf-8 81.1963ms
+2025-08-04 02:03:05.679 +05:30 [INF] User profile is available. Using 'C:\Users\suraj\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-08-04 02:03:05.955 +05:30 [INF] Now listening on: https://localhost:7195
+2025-08-04 02:03:05.958 +05:30 [INF] Now listening on: http://localhost:5253
+2025-08-04 02:03:06.110 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 02:03:06.112 +05:30 [INF] Hosting environment: Development
+2025-08-04 02:03:06.114 +05:30 [INF] Content root path: D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API
+2025-08-04 02:03:06.877 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/ - null null
+2025-08-04 02:03:07.182 +05:30 [INF] Incoming Request: GET /
+2025-08-04 02:03:07.270 +05:30 [INF] Executing endpoint 'HTTP: GET /'
+2025-08-04 02:03:07.272 +05:30 [INF] Executed endpoint 'HTTP: GET /'
+2025-08-04 02:03:07.276 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/ - 302 0 null 408.3312ms
+2025-08-04 02:03:07.327 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-04 02:03:07.334 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_vs/browserLink - null null
+2025-08-04 02:03:07.345 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - 200 16515 application/javascript; charset=utf-8 17.6796ms
+2025-08-04 02:03:07.384 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_vs/browserLink - 200 null text/javascript; charset=UTF-8 49.5624ms
+2025-08-04 02:03:07.447 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - null null
+2025-08-04 02:03:07.521 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 73.9646ms
+2025-08-04 02:03:39.490 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Schedule - null null
+2025-08-04 02:03:39.505 +05:30 [INF] Incoming Request: GET /api/Schedule
+2025-08-04 02:03:39.591 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.ScheduleController.GetAll (AuthService.API)'
+2025-08-04 02:03:39.607 +05:30 [INF] Route matched with {action = "GetAll", controller = "Schedule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller AuthService.API.Controllers.ScheduleController (AuthService.API).
+2025-08-04 02:03:40.202 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Schedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 02:03:40.760 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[ArrivalTime], [s].[BusId], [s].[DepartureTime], [s].[Price], [s].[RouteId]
+FROM [Schedules] AS [s]
+2025-08-04 02:03:40.788 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.Schedule.ScheduleDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 02:03:40.808 +05:30 [INF] Executed action AuthService.API.Controllers.ScheduleController.GetAll (AuthService.API) in 1193.9591ms
+2025-08-04 02:03:40.811 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.ScheduleController.GetAll (AuthService.API)'
+2025-08-04 02:03:40.821 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Schedule - 200 null application/json; charset=utf-8 1330.7641ms
+2025-08-04 02:03:55.005 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Bus - null null
+2025-08-04 02:03:55.012 +05:30 [INF] Incoming Request: GET /api/Bus
+2025-08-04 02:03:55.016 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BusController.GetAll (AuthService.API)'
+2025-08-04 02:03:55.021 +05:30 [INF] Route matched with {action = "GetAll", controller = "Bus"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller AuthService.API.Controllers.BusController (AuthService.API).
+2025-08-04 02:03:55.050 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BusNumber], [b].[Capacity], [b].[Type]
+FROM [Buses] AS [b]
+2025-08-04 02:03:55.098 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.IEnumerable`1[[AuthService.Application.DTOs.Bus.BusDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 02:03:55.105 +05:30 [INF] Executed action AuthService.API.Controllers.BusController.GetAll (AuthService.API) in 80.1649ms
+2025-08-04 02:03:55.108 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BusController.GetAll (AuthService.API)'
+2025-08-04 02:03:55.110 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Bus - 200 null application/json; charset=utf-8 105.0169ms
+2025-08-04 02:04:21.555 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Route - null null
+2025-08-04 02:04:21.567 +05:30 [INF] Incoming Request: GET /api/Route
+2025-08-04 02:04:21.570 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.RouteController.GetAll (AuthService.API)'
+2025-08-04 02:04:21.574 +05:30 [INF] Route matched with {action = "GetAll", controller = "Route"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller AuthService.API.Controllers.RouteController (AuthService.API).
+2025-08-04 02:04:21.642 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[DistanceInKm], [r].[Duration], [r].[EndCity], [r].[StartCity]
+FROM [Routes] AS [r]
+2025-08-04 02:04:21.660 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.Route.RouteDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 02:04:21.670 +05:30 [INF] Executed action AuthService.API.Controllers.RouteController.GetAll (AuthService.API) in 91.8163ms
+2025-08-04 02:04:21.678 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.RouteController.GetAll (AuthService.API)'
+2025-08-04 02:04:21.681 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Route - 200 null application/json; charset=utf-8 125.4004ms
+2025-08-04 02:05:34.389 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Schedule - application/json 214
+2025-08-04 02:05:34.400 +05:30 [INF] Incoming Request: POST /api/Schedule
+2025-08-04 02:05:34.407 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.ScheduleController.Create (AuthService.API)'
+2025-08-04 02:05:34.416 +05:30 [INF] Route matched with {action = "Create", controller = "Schedule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.Schedule.CreateScheduleRequest) on controller AuthService.API.Controllers.ScheduleController (AuthService.API).
+2025-08-04 02:05:34.583 +05:30 [INF] Executed DbCommand (27ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[Id], [b].[BusNumber], [b].[Capacity], [b].[Type]
+FROM [Buses] AS [b]
+WHERE [b].[Id] = @__p_0
+2025-08-04 02:05:34.600 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[DistanceInKm], [r].[Duration], [r].[EndCity], [r].[StartCity]
+FROM [Routes] AS [r]
+WHERE [r].[Id] = @__p_0
+2025-08-04 02:05:34.727 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime2), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Schedules] ([Id], [ArrivalTime], [BusId], [DepartureTime], [Price], [RouteId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-08-04 02:05:34.740 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.Schedule.ScheduleDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 02:05:34.746 +05:30 [INF] Executed action AuthService.API.Controllers.ScheduleController.Create (AuthService.API) in 325.5409ms
+2025-08-04 02:05:34.748 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.ScheduleController.Create (AuthService.API)'
+2025-08-04 02:05:34.751 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Schedule - 201 null application/json; charset=utf-8 361.7609ms
+2025-08-04 02:06:02.530 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Schedule/0c73cee2-1ea6-4341-94f0-f4a0ab06c457 - null null
+2025-08-04 02:06:02.541 +05:30 [INF] Incoming Request: GET /api/Schedule/0c73cee2-1ea6-4341-94f0-f4a0ab06c457
+2025-08-04 02:06:02.544 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.ScheduleController.GetById (AuthService.API)'
+2025-08-04 02:06:02.550 +05:30 [INF] Route matched with {action = "GetById", controller = "Schedule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller AuthService.API.Controllers.ScheduleController (AuthService.API).
+2025-08-04 02:06:02.577 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[ArrivalTime], [s].[BusId], [s].[DepartureTime], [s].[Price], [s].[RouteId]
+FROM [Schedules] AS [s]
+WHERE [s].[Id] = @__p_0
+2025-08-04 02:06:02.584 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.Schedule.ScheduleDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 02:06:02.587 +05:30 [INF] Executed action AuthService.API.Controllers.ScheduleController.GetById (AuthService.API) in 33.7663ms
+2025-08-04 02:06:02.589 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.ScheduleController.GetById (AuthService.API)'
+2025-08-04 02:06:02.591 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Schedule/0c73cee2-1ea6-4341-94f0-f4a0ab06c457 - 200 null application/json; charset=utf-8 61.3679ms
+2025-08-04 02:19:51.265 +05:30 [INF] User profile is available. Using 'C:\Users\suraj\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-08-04 02:19:51.612 +05:30 [INF] Now listening on: https://localhost:7195
+2025-08-04 02:19:51.615 +05:30 [INF] Now listening on: http://localhost:5253
+2025-08-04 02:19:51.802 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 02:19:51.804 +05:30 [INF] Hosting environment: Development
+2025-08-04 02:19:51.806 +05:30 [INF] Content root path: D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API
+2025-08-04 02:19:52.226 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/ - null null
+2025-08-04 02:19:52.370 +05:30 [INF] Incoming Request: GET /
+2025-08-04 02:19:52.445 +05:30 [INF] Executing endpoint 'HTTP: GET /'
+2025-08-04 02:19:52.449 +05:30 [INF] Executed endpoint 'HTTP: GET /'
+2025-08-04 02:19:52.453 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/ - 302 0 null 235.2608ms
+2025-08-04 02:19:52.511 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-04 02:19:52.511 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_vs/browserLink - null null
+2025-08-04 02:19:52.539 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - 200 16515 application/javascript; charset=utf-8 27.2948ms
+2025-08-04 02:19:52.575 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_vs/browserLink - 200 null text/javascript; charset=UTF-8 64.1381ms
+2025-08-04 02:19:52.655 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - null null
+2025-08-04 02:19:52.685 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 30.05ms
+2025-08-04 02:20:15.700 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Auth/login - application/json 59
+2025-08-04 02:20:15.715 +05:30 [INF] Incoming Request: POST /api/Auth/login
+2025-08-04 02:20:15.756 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.AuthController.Login (AuthService.API)'
+2025-08-04 02:20:15.786 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(AuthService.Application.DTOs.LoginRequest) on controller AuthService.API.Controllers.AuthController (AuthService.API).
+2025-08-04 02:20:16.554 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'Booking'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 02:20:16.557 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Schedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 02:20:17.355 +05:30 [INF] Executed DbCommand (46ms) [Parameters=[@__request_Email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[CreatedAt], [u].[Email], [u].[FullName], [u].[PasswordHash], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__request_Email_0
+2025-08-04 02:20:17.607 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [RefreshToken] = @p0, [RefreshTokenExpiryTime] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2025-08-04 02:20:17.631 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuthService.Application.DTOs.LoginResponse'.
+2025-08-04 02:20:17.645 +05:30 [INF] Executed action AuthService.API.Controllers.AuthController.Login (AuthService.API) in 1852.2803ms
+2025-08-04 02:20:17.649 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.AuthController.Login (AuthService.API)'
+2025-08-04 02:20:17.660 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Auth/login - 200 null application/json; charset=utf-8 1959.603ms
+2025-08-04 02:20:51.229 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Booking - null null
+2025-08-04 02:20:51.248 +05:30 [INF] Incoming Request: GET /api/Booking
+2025-08-04 02:20:51.307 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API)'
+2025-08-04 02:20:51.313 +05:30 [INF] Route matched with {action = "GetMyBookings", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMyBookings() on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:20:51.409 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BookingTime], [b].[ScheduleId], [b].[SeatsBooked], [b].[Status], [b].[TotalAmount], [b].[UserId]
+FROM [Bookings] AS [b]
+WHERE [b].[UserId] = @__userId_0
+2025-08-04 02:20:51.415 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.Booking.BookingDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 02:20:51.425 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API) in 108.5141ms
+2025-08-04 02:20:51.428 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API)'
+2025-08-04 02:20:51.431 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Booking - 200 null application/json; charset=utf-8 201.6918ms
+2025-08-04 02:21:42.265 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Booking - application/json 78
+2025-08-04 02:21:42.286 +05:30 [INF] Incoming Request: POST /api/Booking
+2025-08-04 02:21:42.290 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:21:42.297 +05:30 [INF] Route matched with {action = "Create", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.Booking.CreateBookingRequest) on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:21:42.388 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__request_ScheduleId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[ArrivalTime], [s].[BusId], [s].[DepartureTime], [s].[Price], [s].[RouteId]
+FROM [Schedules] AS [s]
+WHERE [s].[Id] = @__request_ScheduleId_0
+2025-08-04 02:21:42.416 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[CreatedAt], [u].[Email], [u].[FullName], [u].[PasswordHash], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__userId_0
+2025-08-04 02:21:42.505 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Bookings] ([Id], [BookingTime], [ScheduleId], [SeatsBooked], [Status], [TotalAmount], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-08-04 02:21:42.511 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.Booking.BookingDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 02:21:42.519 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.Create (AuthService.API) in 217.8514ms
+2025-08-04 02:21:42.563 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:21:42.565 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Booking - 201 null application/json; charset=utf-8 300.5986ms
+2025-08-04 02:22:36.711 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Booking/eb8f919e-91db-4b15-be40-e7289e914563 - null null
+2025-08-04 02:22:36.722 +05:30 [INF] Incoming Request: GET /api/Booking/eb8f919e-91db-4b15-be40-e7289e914563
+2025-08-04 02:22:36.726 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.GetById (AuthService.API)'
+2025-08-04 02:22:36.731 +05:30 [INF] Route matched with {action = "GetById", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:22:36.779 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[Id], [b].[BookingTime], [b].[ScheduleId], [b].[SeatsBooked], [b].[Status], [b].[TotalAmount], [b].[UserId]
+FROM [Bookings] AS [b]
+WHERE [b].[Id] = @__id_0 AND [b].[UserId] = @__userId_1
+2025-08-04 02:22:36.782 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.Booking.BookingDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 02:22:36.785 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.GetById (AuthService.API) in 50.7905ms
+2025-08-04 02:22:36.787 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.GetById (AuthService.API)'
+2025-08-04 02:22:36.789 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Booking/eb8f919e-91db-4b15-be40-e7289e914563 - 200 null application/json; charset=utf-8 78.6747ms
+2025-08-04 02:22:54.840 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7195/api/Booking/eb8f919e-91db-4b15-be40-e7289e914563/cancel - null 0
+2025-08-04 02:22:54.851 +05:30 [INF] Incoming Request: PUT /api/Booking/eb8f919e-91db-4b15-be40-e7289e914563/cancel
+2025-08-04 02:22:54.854 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.Cancel (AuthService.API)'
+2025-08-04 02:22:54.858 +05:30 [INF] Route matched with {action = "Cancel", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Cancel(System.Guid) on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:22:54.875 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[Id], [b].[BookingTime], [b].[ScheduleId], [b].[SeatsBooked], [b].[Status], [b].[TotalAmount], [b].[UserId]
+FROM [Bookings] AS [b]
+WHERE [b].[Id] = @__id_0 AND [b].[UserId] = @__userId_1
+2025-08-04 02:22:54.886 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Bookings] SET [Status] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+2025-08-04 02:22:54.892 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 02:22:54.896 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.Cancel (AuthService.API) in 33.8465ms
+2025-08-04 02:22:54.899 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.Cancel (AuthService.API)'
+2025-08-04 02:22:54.901 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7195/api/Booking/eb8f919e-91db-4b15-be40-e7289e914563/cancel - 200 null application/json; charset=utf-8 60.7602ms
+2025-08-04 02:23:12.879 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Booking - null null
+2025-08-04 02:23:12.885 +05:30 [INF] Incoming Request: GET /api/Booking
+2025-08-04 02:23:12.887 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API)'
+2025-08-04 02:23:12.890 +05:30 [INF] Route matched with {action = "GetMyBookings", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMyBookings() on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:23:12.896 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BookingTime], [b].[ScheduleId], [b].[SeatsBooked], [b].[Status], [b].[TotalAmount], [b].[UserId]
+FROM [Bookings] AS [b]
+WHERE [b].[UserId] = @__userId_0
+2025-08-04 02:23:12.901 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.Booking.BookingDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 02:23:12.904 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API) in 10.7538ms
+2025-08-04 02:23:12.906 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API)'
+2025-08-04 02:23:12.909 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Booking - 200 null application/json; charset=utf-8 29.2142ms
+2025-08-04 02:23:52.706 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Booking - application/json 78
+2025-08-04 02:23:52.716 +05:30 [INF] Incoming Request: POST /api/Booking
+2025-08-04 02:23:52.719 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:23:52.721 +05:30 [INF] Route matched with {action = "Create", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.Booking.CreateBookingRequest) on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:23:52.737 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@__request_ScheduleId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[ArrivalTime], [s].[BusId], [s].[DepartureTime], [s].[Price], [s].[RouteId]
+FROM [Schedules] AS [s]
+WHERE [s].[Id] = @__request_ScheduleId_0
+2025-08-04 02:23:52.744 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[CreatedAt], [u].[Email], [u].[FullName], [u].[PasswordHash], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__userId_0
+2025-08-04 02:23:52.754 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Bookings] ([Id], [BookingTime], [ScheduleId], [SeatsBooked], [Status], [TotalAmount], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-08-04 02:23:52.759 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.Booking.BookingDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 02:23:52.761 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.Create (AuthService.API) in 36.8909ms
+2025-08-04 02:23:52.763 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:23:52.765 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Booking - 201 null application/json; charset=utf-8 58.6873ms
+2025-08-04 02:24:01.877 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Booking - null null
+2025-08-04 02:24:01.882 +05:30 [INF] Incoming Request: GET /api/Booking
+2025-08-04 02:24:01.884 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API)'
+2025-08-04 02:24:01.886 +05:30 [INF] Route matched with {action = "GetMyBookings", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMyBookings() on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:24:01.892 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BookingTime], [b].[ScheduleId], [b].[SeatsBooked], [b].[Status], [b].[TotalAmount], [b].[UserId]
+FROM [Bookings] AS [b]
+WHERE [b].[UserId] = @__userId_0
+2025-08-04 02:24:01.896 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.Booking.BookingDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 02:24:01.898 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API) in 8.9579ms
+2025-08-04 02:24:01.901 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API)'
+2025-08-04 02:24:01.903 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Booking - 200 null application/json; charset=utf-8 25.891ms
+2025-08-04 02:37:54.748 +05:30 [INF] User profile is available. Using 'C:\Users\suraj\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-08-04 02:37:55.066 +05:30 [INF] Now listening on: https://localhost:7195
+2025-08-04 02:37:55.069 +05:30 [INF] Now listening on: http://localhost:5253
+2025-08-04 02:37:55.224 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 02:37:55.227 +05:30 [INF] Hosting environment: Development
+2025-08-04 02:37:55.228 +05:30 [INF] Content root path: D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API
+2025-08-04 02:37:56.041 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/ - null null
+2025-08-04 02:37:56.208 +05:30 [INF] Incoming Request: GET /
+2025-08-04 02:37:56.283 +05:30 [INF] Executing endpoint 'HTTP: GET /'
+2025-08-04 02:37:56.286 +05:30 [INF] Executed endpoint 'HTTP: GET /'
+2025-08-04 02:37:56.291 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/ - 302 0 null 258.0517ms
+2025-08-04 02:37:56.346 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-04 02:37:56.359 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_vs/browserLink - null null
+2025-08-04 02:37:56.368 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - 200 16515 application/javascript; charset=utf-8 22.6075ms
+2025-08-04 02:37:56.415 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_vs/browserLink - 200 null text/javascript; charset=UTF-8 56.195ms
+2025-08-04 02:37:56.468 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - null null
+2025-08-04 02:37:56.505 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 34.7346ms
+2025-08-04 02:38:56.515 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Auth/register - application/json 86
+2025-08-04 02:38:56.530 +05:30 [INF] Incoming Request: POST /api/Auth/register
+2025-08-04 02:38:56.539 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.AuthController.Register (AuthService.API)'
+2025-08-04 02:38:56.575 +05:30 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(AuthService.Application.DTOs.RegisterRequest) on controller AuthService.API.Controllers.AuthController (AuthService.API).
+2025-08-04 02:38:57.354 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'Booking'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 02:38:57.357 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Schedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 02:38:58.077 +05:30 [INF] Executed DbCommand (63ms) [Parameters=[@__request_Email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[Email] = @__request_Email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-08-04 02:38:58.280 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime2), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Id], [CreatedAt], [Email], [FullName], [PasswordHash], [RefreshToken], [RefreshTokenExpiryTime], [Role])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2025-08-04 02:38:58.299 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 02:38:58.311 +05:30 [INF] Executed action AuthService.API.Controllers.AuthController.Register (AuthService.API) in 1727.555ms
+2025-08-04 02:38:58.316 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.AuthController.Register (AuthService.API)'
+2025-08-04 02:38:58.327 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Auth/register - 200 null application/json; charset=utf-8 1811.6752ms
+2025-08-04 02:39:16.125 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Auth/login - application/json 59
+2025-08-04 02:39:16.139 +05:30 [INF] Incoming Request: POST /api/Auth/login
+2025-08-04 02:39:16.144 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.AuthController.Login (AuthService.API)'
+2025-08-04 02:39:16.151 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(AuthService.Application.DTOs.LoginRequest) on controller AuthService.API.Controllers.AuthController (AuthService.API).
+2025-08-04 02:39:16.205 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__request_Email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[CreatedAt], [u].[Email], [u].[FullName], [u].[PasswordHash], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__request_Email_0
+2025-08-04 02:39:16.256 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [RefreshToken] = @p0, [RefreshTokenExpiryTime] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2025-08-04 02:39:16.266 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuthService.Application.DTOs.LoginResponse'.
+2025-08-04 02:39:16.275 +05:30 [INF] Executed action AuthService.API.Controllers.AuthController.Login (AuthService.API) in 119.4343ms
+2025-08-04 02:39:16.278 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.AuthController.Login (AuthService.API)'
+2025-08-04 02:39:16.280 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Auth/login - 200 null application/json; charset=utf-8 155.5974ms
+2025-08-04 02:39:49.116 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Booking - null null
+2025-08-04 02:39:49.123 +05:30 [INF] Incoming Request: GET /api/Booking
+2025-08-04 02:39:49.168 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API)'
+2025-08-04 02:39:49.173 +05:30 [INF] Route matched with {action = "GetMyBookings", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMyBookings() on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:39:49.240 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BookingTime], [b].[ScheduleId], [b].[SeatsBooked], [b].[Status], [b].[TotalAmount], [b].[UserId]
+FROM [Bookings] AS [b]
+WHERE [b].[UserId] = @__userId_0
+2025-08-04 02:39:49.246 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.Booking.BookingDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 02:39:49.256 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API) in 78.874ms
+2025-08-04 02:39:49.259 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API)'
+2025-08-04 02:39:49.261 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Booking - 200 null application/json; charset=utf-8 144.8742ms
+2025-08-04 02:40:13.592 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Booking - application/json 78
+2025-08-04 02:40:13.637 +05:30 [INF] Incoming Request: POST /api/Booking
+2025-08-04 02:40:13.640 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:40:13.645 +05:30 [INF] Route matched with {action = "Create", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.Booking.CreateBookingRequest) on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:40:29.431 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.Create (AuthService.API) in 15782.4182ms
+2025-08-04 02:40:29.436 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:40:29.485 +05:30 [ERR] Unhandled Exception
+System.InvalidOperationException: The expression 'IIF((s.Bookings != null), s.Bookings.AsQueryable().Where(b => (b.Status == "Booked")), Convert(value(System.Collections.Generic.List`1[AuthService.Domain.Entities.Booking]), IEnumerable`1))' is invalid inside an 'Include' operation, since it does not represent a property access: 't => t.MyProperty'. To target navigations declared on derived types, use casting ('t => ((Derived)t).MyProperty') or the 'as' operator ('t => (t as Derived).MyProperty'). Collection navigation access can be filtered by composing Where, OrderBy(Descending), ThenBy(Descending), Skip or Take operations. For more information on including related data, see https://go.microsoft.com/fwlink/?LinkID=746393.
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.<ProcessInclude>g__ExtractIncludeFilter|33_0(Expression currentExpression, Expression includeExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.ProcessInclude(NavigationExpansionExpression source, Expression expression, Boolean thenInclude, Boolean setLoaded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.Expand(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.Process(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, LambdaExpression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at AuthService.Infrastructure.Services.BookingService.CreateAsync(CreateBookingRequest request, Guid userId) in D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.Infrastructure\Services\BookingService.cs:line 19
+   at AuthService.API.Controllers.BookingController.Create(CreateBookingRequest request) in D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API\Controllers\BookingController.cs:line 48
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthService.API.Middleware.JwtDecryptionMiddleware.Invoke(HttpContext context) in D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API\Middleware\JwtDecryptionMiddleware.cs:line 42
+   at AuthService.API.Middleware.ExceptionHandlingMiddleware.Invoke(HttpContext context) in D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API\Middleware\ExceptionHandlingMiddleware.cs:line 22
+2025-08-04 02:40:29.541 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Booking - 500 null application/json 15948.5049ms
+2025-08-04 02:41:03.396 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/swagger/index.html - null null
+2025-08-04 02:41:03.459 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/swagger/index.html - 200 null text/html;charset=utf-8 62.6682ms
+2025-08-04 02:41:03.487 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_vs/browserLink - null null
+2025-08-04 02:41:03.531 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-04 02:41:03.537 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - 200 16515 application/javascript; charset=utf-8 6.1721ms
+2025-08-04 02:41:03.545 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_vs/browserLink - 200 null text/javascript; charset=UTF-8 58.1833ms
+2025-08-04 02:41:03.592 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - null null
+2025-08-04 02:41:03.604 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 12.0544ms
+2025-08-04 02:48:26.621 +05:30 [INF] User profile is available. Using 'C:\Users\suraj\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-08-04 02:48:26.934 +05:30 [INF] Now listening on: https://localhost:7195
+2025-08-04 02:48:26.938 +05:30 [INF] Now listening on: http://localhost:5253
+2025-08-04 02:48:27.079 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 02:48:27.081 +05:30 [INF] Hosting environment: Development
+2025-08-04 02:48:27.082 +05:30 [INF] Content root path: D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API
+2025-08-04 02:48:27.782 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/ - null null
+2025-08-04 02:48:27.901 +05:30 [INF] Incoming Request: GET /
+2025-08-04 02:48:27.961 +05:30 [INF] Executing endpoint 'HTTP: GET /'
+2025-08-04 02:48:27.964 +05:30 [INF] Executed endpoint 'HTTP: GET /'
+2025-08-04 02:48:27.968 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/ - 302 0 null 190.4886ms
+2025-08-04 02:48:28.039 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-04 02:48:28.045 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_vs/browserLink - null null
+2025-08-04 02:48:28.088 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - 200 16515 application/javascript; charset=utf-8 49.369ms
+2025-08-04 02:48:28.156 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_vs/browserLink - 200 null text/javascript; charset=UTF-8 110.9116ms
+2025-08-04 02:48:28.221 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - null null
+2025-08-04 02:48:28.263 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 42.2616ms
+2025-08-04 02:48:46.558 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Booking - null null
+2025-08-04 02:48:46.567 +05:30 [INF] Incoming Request: GET /api/Booking
+2025-08-04 02:48:46.656 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API)'
+2025-08-04 02:48:46.676 +05:30 [INF] Route matched with {action = "GetMyBookings", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMyBookings() on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:48:47.299 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'Booking'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 02:48:47.302 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Schedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 02:48:48.058 +05:30 [INF] Executed DbCommand (63ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BookingTime], [b].[ScheduleId], [b].[SeatsBooked], [b].[Status], [b].[TotalAmount], [b].[UserId]
+FROM [Bookings] AS [b]
+WHERE [b].[UserId] = @__userId_0
+2025-08-04 02:48:48.098 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.Booking.BookingDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 02:48:48.125 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API) in 1440.5647ms
+2025-08-04 02:48:48.127 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.GetMyBookings (AuthService.API)'
+2025-08-04 02:48:48.140 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Booking - 200 null application/json; charset=utf-8 1582.125ms
+2025-08-04 02:49:04.418 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Booking - application/json 78
+2025-08-04 02:49:04.424 +05:30 [INF] Incoming Request: POST /api/Booking
+2025-08-04 02:49:04.430 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:49:04.440 +05:30 [INF] Route matched with {action = "Create", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.Booking.CreateBookingRequest) on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:49:04.631 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[@__request_ScheduleId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s0].[Id], [s0].[ArrivalTime], [s0].[BusId], [s0].[DepartureTime], [s0].[Price], [s0].[RouteId], [s0].[Id0], [s0].[BusNumber], [s0].[Capacity], [s0].[Type], [b1].[Id], [b1].[BookingTime], [b1].[ScheduleId], [b1].[SeatsBooked], [b1].[Status], [b1].[TotalAmount], [b1].[UserId]
+FROM (
+    SELECT TOP(1) [s].[Id], [s].[ArrivalTime], [s].[BusId], [s].[DepartureTime], [s].[Price], [s].[RouteId], [b].[Id] AS [Id0], [b].[BusNumber], [b].[Capacity], [b].[Type]
+    FROM [Schedules] AS [s]
+    INNER JOIN [Buses] AS [b] ON [s].[BusId] = [b].[Id]
+    WHERE [s].[Id] = @__request_ScheduleId_0
+) AS [s0]
+LEFT JOIN (
+    SELECT [b0].[Id], [b0].[BookingTime], [b0].[ScheduleId], [b0].[SeatsBooked], [b0].[Status], [b0].[TotalAmount], [b0].[UserId]
+    FROM [Bookings] AS [b0]
+    WHERE [b0].[Status] = N'Booked'
+) AS [b1] ON [s0].[Id] = [b1].[ScheduleId]
+ORDER BY [s0].[Id], [s0].[Id0]
+2025-08-04 02:49:04.730 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[CreatedAt], [u].[Email], [u].[FullName], [u].[PasswordHash], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__userId_0
+2025-08-04 02:49:04.874 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Bookings] ([Id], [BookingTime], [ScheduleId], [SeatsBooked], [Status], [TotalAmount], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-08-04 02:49:04.889 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.Booking.BookingDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 02:49:04.897 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.Create (AuthService.API) in 452.7114ms
+2025-08-04 02:49:04.900 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:49:04.903 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Booking - 201 null application/json; charset=utf-8 485.9511ms
+2025-08-04 02:49:37.411 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Booking - application/json 79
+2025-08-04 02:49:37.417 +05:30 [INF] Incoming Request: POST /api/Booking
+2025-08-04 02:49:37.421 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:49:37.423 +05:30 [INF] Route matched with {action = "Create", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.Booking.CreateBookingRequest) on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:49:37.480 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__request_ScheduleId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s0].[Id], [s0].[ArrivalTime], [s0].[BusId], [s0].[DepartureTime], [s0].[Price], [s0].[RouteId], [s0].[Id0], [s0].[BusNumber], [s0].[Capacity], [s0].[Type], [b1].[Id], [b1].[BookingTime], [b1].[ScheduleId], [b1].[SeatsBooked], [b1].[Status], [b1].[TotalAmount], [b1].[UserId]
+FROM (
+    SELECT TOP(1) [s].[Id], [s].[ArrivalTime], [s].[BusId], [s].[DepartureTime], [s].[Price], [s].[RouteId], [b].[Id] AS [Id0], [b].[BusNumber], [b].[Capacity], [b].[Type]
+    FROM [Schedules] AS [s]
+    INNER JOIN [Buses] AS [b] ON [s].[BusId] = [b].[Id]
+    WHERE [s].[Id] = @__request_ScheduleId_0
+) AS [s0]
+LEFT JOIN (
+    SELECT [b0].[Id], [b0].[BookingTime], [b0].[ScheduleId], [b0].[SeatsBooked], [b0].[Status], [b0].[TotalAmount], [b0].[UserId]
+    FROM [Bookings] AS [b0]
+    WHERE [b0].[Status] = N'Booked'
+) AS [b1] ON [s0].[Id] = [b1].[ScheduleId]
+ORDER BY [s0].[Id], [s0].[Id0]
+2025-08-04 02:49:37.486 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[CreatedAt], [u].[Email], [u].[FullName], [u].[PasswordHash], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__userId_0
+2025-08-04 02:49:37.495 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Bookings] ([Id], [BookingTime], [ScheduleId], [SeatsBooked], [Status], [TotalAmount], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-08-04 02:49:37.500 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.Booking.BookingDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 02:49:37.502 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.Create (AuthService.API) in 76.3089ms
+2025-08-04 02:49:37.505 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:49:37.506 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Booking - 201 null application/json; charset=utf-8 95.9173ms
+2025-08-04 02:50:06.739 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Booking - application/json 79
+2025-08-04 02:50:06.751 +05:30 [INF] Incoming Request: POST /api/Booking
+2025-08-04 02:50:06.754 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:50:06.756 +05:30 [INF] Route matched with {action = "Create", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.Booking.CreateBookingRequest) on controller AuthService.API.Controllers.BookingController (AuthService.API).
+2025-08-04 02:50:06.778 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[@__request_ScheduleId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s0].[Id], [s0].[ArrivalTime], [s0].[BusId], [s0].[DepartureTime], [s0].[Price], [s0].[RouteId], [s0].[Id0], [s0].[BusNumber], [s0].[Capacity], [s0].[Type], [b1].[Id], [b1].[BookingTime], [b1].[ScheduleId], [b1].[SeatsBooked], [b1].[Status], [b1].[TotalAmount], [b1].[UserId]
+FROM (
+    SELECT TOP(1) [s].[Id], [s].[ArrivalTime], [s].[BusId], [s].[DepartureTime], [s].[Price], [s].[RouteId], [b].[Id] AS [Id0], [b].[BusNumber], [b].[Capacity], [b].[Type]
+    FROM [Schedules] AS [s]
+    INNER JOIN [Buses] AS [b] ON [s].[BusId] = [b].[Id]
+    WHERE [s].[Id] = @__request_ScheduleId_0
+) AS [s0]
+LEFT JOIN (
+    SELECT [b0].[Id], [b0].[BookingTime], [b0].[ScheduleId], [b0].[SeatsBooked], [b0].[Status], [b0].[TotalAmount], [b0].[UserId]
+    FROM [Bookings] AS [b0]
+    WHERE [b0].[Status] = N'Booked'
+) AS [b1] ON [s0].[Id] = [b1].[ScheduleId]
+ORDER BY [s0].[Id], [s0].[Id0]
+2025-08-04 02:50:06.787 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[CreatedAt], [u].[Email], [u].[FullName], [u].[PasswordHash], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__userId_0
+2025-08-04 02:50:13.229 +05:30 [INF] Executed action AuthService.API.Controllers.BookingController.Create (AuthService.API) in 6470.0256ms
+2025-08-04 02:50:13.232 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.BookingController.Create (AuthService.API)'
+2025-08-04 02:50:13.540 +05:30 [ERR] Unhandled Exception
+System.Exception: Only 8 seats available
+   at AuthService.Infrastructure.Services.BookingService.CreateAsync(CreateBookingRequest request, Guid userId) in D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.Infrastructure\Services\BookingService.cs:line 37
+   at AuthService.API.Controllers.BookingController.Create(CreateBookingRequest request) in D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API\Controllers\BookingController.cs:line 48
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthService.API.Middleware.JwtDecryptionMiddleware.Invoke(HttpContext context) in D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API\Middleware\JwtDecryptionMiddleware.cs:line 42
+   at AuthService.API.Middleware.ExceptionHandlingMiddleware.Invoke(HttpContext context) in D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API\Middleware\ExceptionHandlingMiddleware.cs:line 22
+2025-08-04 02:50:13.582 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Booking - 500 null application/json 6843.9523ms
+2025-08-04 04:00:31.605 +05:30 [INF] User profile is available. Using 'C:\Users\suraj\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-08-04 04:00:31.945 +05:30 [INF] Now listening on: https://localhost:7195
+2025-08-04 04:00:31.947 +05:30 [INF] Now listening on: http://localhost:5253
+2025-08-04 04:00:32.157 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 04:00:32.159 +05:30 [INF] Hosting environment: Development
+2025-08-04 04:00:32.160 +05:30 [INF] Content root path: D:\.STUDY\FullStack\Bus Booking\BusBooking.Backend\AuthService.API
+2025-08-04 04:00:33.941 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/ - null null
+2025-08-04 04:00:34.135 +05:30 [INF] Incoming Request: GET /
+2025-08-04 04:00:34.242 +05:30 [INF] Executing endpoint 'HTTP: GET /'
+2025-08-04 04:00:34.245 +05:30 [INF] Executed endpoint 'HTTP: GET /'
+2025-08-04 04:00:34.251 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/ - 302 0 null 319.7279ms
+2025-08-04 04:00:34.312 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-04 04:00:34.323 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/_vs/browserLink - null null
+2025-08-04 04:00:34.327 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_framework/aspnetcore-browser-refresh.js - 200 16515 application/javascript; charset=utf-8 14.6803ms
+2025-08-04 04:00:34.368 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/_vs/browserLink - 200 null text/javascript; charset=UTF-8 45.6738ms
+2025-08-04 04:00:34.436 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - null null
+2025-08-04 04:00:34.475 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 38.9741ms
+2025-08-04 04:01:01.130 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Auth/login - application/json 61
+2025-08-04 04:01:01.173 +05:30 [INF] Incoming Request: POST /api/Auth/login
+2025-08-04 04:01:01.202 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.AuthController.Login (AuthService.API)'
+2025-08-04 04:01:01.250 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(AuthService.Application.DTOs.LoginRequest) on controller AuthService.API.Controllers.AuthController (AuthService.API).
+2025-08-04 04:01:02.088 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'Booking'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 04:01:02.092 +05:30 [WRN] No store type was specified for the decimal property 'DistanceInKm' on entity type 'Route'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 04:01:02.095 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Schedule'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 04:01:02.851 +05:30 [INF] Executed DbCommand (51ms) [Parameters=[@__request_Email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[Id], [u].[CreatedAt], [u].[Email], [u].[FullName], [u].[PasswordHash], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__request_Email_0
+2025-08-04 04:01:03.041 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [RefreshToken] = @p0, [RefreshTokenExpiryTime] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2025-08-04 04:01:03.060 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuthService.Application.DTOs.LoginResponse'.
+2025-08-04 04:01:03.073 +05:30 [INF] Executed action AuthService.API.Controllers.AuthController.Login (AuthService.API) in 1816.8572ms
+2025-08-04 04:01:03.077 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.AuthController.Login (AuthService.API)'
+2025-08-04 04:01:03.091 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Auth/login - 200 null application/json; charset=utf-8 1960.7963ms
+2025-08-04 04:01:22.923 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/City - null null
+2025-08-04 04:01:22.936 +05:30 [INF] Incoming Request: GET /api/City
+2025-08-04 04:01:22.991 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.CityController.GetAll (AuthService.API)'
+2025-08-04 04:01:22.997 +05:30 [INF] Route matched with {action = "GetAll", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller AuthService.API.Controllers.CityController (AuthService.API).
+2025-08-04 04:01:23.032 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Name]
+FROM [Cities] AS [c]
+2025-08-04 04:01:23.038 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.City.CityDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 04:01:23.045 +05:30 [INF] Executed action AuthService.API.Controllers.CityController.GetAll (AuthService.API) in 44.2573ms
+2025-08-04 04:01:23.049 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.CityController.GetAll (AuthService.API)'
+2025-08-04 04:01:23.051 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/City - 200 null application/json; charset=utf-8 128.3347ms
+2025-08-04 04:01:35.460 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/City - application/json 20
+2025-08-04 04:01:35.466 +05:30 [INF] Incoming Request: POST /api/City
+2025-08-04 04:01:35.476 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:01:35.480 +05:30 [INF] Route matched with {action = "Create", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.City.CreateCityRequest) on controller AuthService.API.Controllers.CityController (AuthService.API).
+2025-08-04 04:01:35.610 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Cities] AS [c]
+        WHERE LOWER([c].[Name]) = @__ToLower_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-08-04 04:01:35.660 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Cities] ([Id], [Name])
+VALUES (@p0, @p1);
+2025-08-04 04:01:35.666 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.City.CityDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 04:01:35.670 +05:30 [INF] Executed action AuthService.API.Controllers.CityController.Create (AuthService.API) in 185.8963ms
+2025-08-04 04:01:35.673 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:01:35.675 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/City - 201 null application/json; charset=utf-8 215.1163ms
+2025-08-04 04:01:49.144 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/City - application/json 22
+2025-08-04 04:01:49.149 +05:30 [INF] Incoming Request: POST /api/City
+2025-08-04 04:01:49.152 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:01:49.154 +05:30 [INF] Route matched with {action = "Create", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.City.CreateCityRequest) on controller AuthService.API.Controllers.CityController (AuthService.API).
+2025-08-04 04:01:49.179 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Cities] AS [c]
+        WHERE LOWER([c].[Name]) = @__ToLower_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-08-04 04:01:49.185 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Cities] ([Id], [Name])
+VALUES (@p0, @p1);
+2025-08-04 04:01:49.190 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.City.CityDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 04:01:49.192 +05:30 [INF] Executed action AuthService.API.Controllers.CityController.Create (AuthService.API) in 34.7532ms
+2025-08-04 04:01:49.194 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:01:49.196 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/City - 201 null application/json; charset=utf-8 51.9858ms
+2025-08-04 04:01:56.242 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/City - application/json 22
+2025-08-04 04:01:56.247 +05:30 [INF] Incoming Request: POST /api/City
+2025-08-04 04:01:56.251 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:01:56.253 +05:30 [INF] Route matched with {action = "Create", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.City.CreateCityRequest) on controller AuthService.API.Controllers.CityController (AuthService.API).
+2025-08-04 04:01:56.258 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Cities] AS [c]
+        WHERE LOWER([c].[Name]) = @__ToLower_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-08-04 04:01:56.265 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Cities] ([Id], [Name])
+VALUES (@p0, @p1);
+2025-08-04 04:01:56.269 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.City.CityDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 04:01:56.272 +05:30 [INF] Executed action AuthService.API.Controllers.CityController.Create (AuthService.API) in 15.6579ms
+2025-08-04 04:01:56.274 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:01:56.276 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/City - 201 null application/json; charset=utf-8 33.9939ms
+2025-08-04 04:02:03.230 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/City - application/json 22
+2025-08-04 04:02:03.235 +05:30 [INF] Incoming Request: POST /api/City
+2025-08-04 04:02:03.238 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:02:03.240 +05:30 [INF] Route matched with {action = "Create", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.City.CreateCityRequest) on controller AuthService.API.Controllers.CityController (AuthService.API).
+2025-08-04 04:02:03.245 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Cities] AS [c]
+        WHERE LOWER([c].[Name]) = @__ToLower_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-08-04 04:02:03.251 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Cities] ([Id], [Name])
+VALUES (@p0, @p1);
+2025-08-04 04:02:03.256 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.City.CityDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 04:02:03.259 +05:30 [INF] Executed action AuthService.API.Controllers.CityController.Create (AuthService.API) in 16.3059ms
+2025-08-04 04:02:03.261 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:02:03.263 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/City - 201 null application/json; charset=utf-8 32.6434ms
+2025-08-04 04:02:08.957 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/City - application/json 22
+2025-08-04 04:02:08.963 +05:30 [INF] Incoming Request: POST /api/City
+2025-08-04 04:02:08.966 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:02:08.968 +05:30 [INF] Route matched with {action = "Create", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.City.CreateCityRequest) on controller AuthService.API.Controllers.CityController (AuthService.API).
+2025-08-04 04:02:08.973 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Cities] AS [c]
+        WHERE LOWER([c].[Name]) = @__ToLower_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-08-04 04:02:08.978 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Cities] ([Id], [Name])
+VALUES (@p0, @p1);
+2025-08-04 04:02:08.983 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.City.CityDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 04:02:08.985 +05:30 [INF] Executed action AuthService.API.Controllers.CityController.Create (AuthService.API) in 14.3572ms
+2025-08-04 04:02:08.988 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:02:08.990 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/City - 201 null application/json; charset=utf-8 32.7957ms
+2025-08-04 04:02:14.888 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/City - application/json 19
+2025-08-04 04:02:14.893 +05:30 [INF] Incoming Request: POST /api/City
+2025-08-04 04:02:14.896 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:02:14.899 +05:30 [INF] Route matched with {action = "Create", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.City.CreateCityRequest) on controller AuthService.API.Controllers.CityController (AuthService.API).
+2025-08-04 04:02:14.904 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Cities] AS [c]
+        WHERE LOWER([c].[Name]) = @__ToLower_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-08-04 04:02:14.911 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Cities] ([Id], [Name])
+VALUES (@p0, @p1);
+2025-08-04 04:02:14.915 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.City.CityDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 04:02:14.918 +05:30 [INF] Executed action AuthService.API.Controllers.CityController.Create (AuthService.API) in 15.097ms
+2025-08-04 04:02:14.920 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:02:14.922 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/City - 201 null application/json; charset=utf-8 34.3678ms
+2025-08-04 04:02:27.745 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/City - application/json 25
+2025-08-04 04:02:27.759 +05:30 [INF] Incoming Request: POST /api/City
+2025-08-04 04:02:27.762 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:02:27.764 +05:30 [INF] Route matched with {action = "Create", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.City.CreateCityRequest) on controller AuthService.API.Controllers.CityController (AuthService.API).
+2025-08-04 04:02:27.782 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Cities] AS [c]
+        WHERE LOWER([c].[Name]) = @__ToLower_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-08-04 04:02:27.787 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Cities] ([Id], [Name])
+VALUES (@p0, @p1);
+2025-08-04 04:02:27.792 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.City.CityDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 04:02:27.794 +05:30 [INF] Executed action AuthService.API.Controllers.CityController.Create (AuthService.API) in 26.2952ms
+2025-08-04 04:02:27.797 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.CityController.Create (AuthService.API)'
+2025-08-04 04:02:27.799 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/City - 201 null application/json; charset=utf-8 53.3491ms
+2025-08-04 04:02:33.672 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/City - null null
+2025-08-04 04:02:33.679 +05:30 [INF] Incoming Request: GET /api/City
+2025-08-04 04:02:33.682 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.CityController.GetAll (AuthService.API)'
+2025-08-04 04:02:33.685 +05:30 [INF] Route matched with {action = "GetAll", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller AuthService.API.Controllers.CityController (AuthService.API).
+2025-08-04 04:02:33.693 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Name]
+FROM [Cities] AS [c]
+2025-08-04 04:02:33.697 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.City.CityDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 04:02:33.700 +05:30 [INF] Executed action AuthService.API.Controllers.CityController.GetAll (AuthService.API) in 12.4541ms
+2025-08-04 04:02:33.703 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.CityController.GetAll (AuthService.API)'
+2025-08-04 04:02:33.704 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/City - 200 null application/json; charset=utf-8 32.1835ms
+2025-08-04 04:03:52.347 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Route - application/json 161
+2025-08-04 04:03:52.365 +05:30 [INF] Incoming Request: POST /api/Route
+2025-08-04 04:03:52.369 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.RouteController.Create (AuthService.API)'
+2025-08-04 04:03:52.374 +05:30 [INF] Route matched with {action = "Create", controller = "Route"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.Route.CreateRouteRequest) on controller AuthService.API.Controllers.RouteController (AuthService.API).
+2025-08-04 04:03:52.442 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Name]
+FROM [Cities] AS [c]
+WHERE [c].[Id] = @__p_0
+2025-08-04 04:03:52.449 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Name]
+FROM [Cities] AS [c]
+WHERE [c].[Id] = @__p_0
+2025-08-04 04:03:52.498 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (DbType = Time), @p3='?' (DbType = Guid), @p4='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Routes] ([Id], [DistanceInKm], [Duration], [FromCityId], [ToCityId])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-08-04 04:03:52.505 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.Route.RouteDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 04:03:52.511 +05:30 [INF] Executed action AuthService.API.Controllers.RouteController.Create (AuthService.API) in 133.1445ms
+2025-08-04 04:03:52.514 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.RouteController.Create (AuthService.API)'
+2025-08-04 04:03:52.516 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Route - 201 null application/json; charset=utf-8 169.6201ms
+2025-08-04 04:04:47.518 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7195/api/Schedule - null null
+2025-08-04 04:04:47.523 +05:30 [INF] Incoming Request: GET /api/Schedule
+2025-08-04 04:04:47.526 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.ScheduleController.GetAll (AuthService.API)'
+2025-08-04 04:04:47.530 +05:30 [INF] Route matched with {action = "GetAll", controller = "Schedule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller AuthService.API.Controllers.ScheduleController (AuthService.API).
+2025-08-04 04:04:47.554 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[ArrivalTime], [s].[BusId], [s].[DepartureTime], [s].[Price], [s].[RouteId]
+FROM [Schedules] AS [s]
+2025-08-04 04:04:47.559 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[System.Collections.Generic.List`1[[AuthService.Application.DTOs.Schedule.ScheduleDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 04:04:47.563 +05:30 [INF] Executed action AuthService.API.Controllers.ScheduleController.GetAll (AuthService.API) in 30.1181ms
+2025-08-04 04:04:47.573 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.ScheduleController.GetAll (AuthService.API)'
+2025-08-04 04:04:47.575 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7195/api/Schedule - 200 null application/json; charset=utf-8 57.4305ms
+2025-08-04 04:06:28.434 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7195/api/Schedule - application/json 214
+2025-08-04 04:06:28.439 +05:30 [INF] Incoming Request: POST /api/Schedule
+2025-08-04 04:06:28.442 +05:30 [INF] Executing endpoint 'AuthService.API.Controllers.ScheduleController.Create (AuthService.API)'
+2025-08-04 04:06:28.446 +05:30 [INF] Route matched with {action = "Create", controller = "Schedule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(AuthService.Application.DTOs.Schedule.CreateScheduleRequest) on controller AuthService.API.Controllers.ScheduleController (AuthService.API).
+2025-08-04 04:06:28.474 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[Id], [b].[BusNumber], [b].[Capacity], [b].[Type]
+FROM [Buses] AS [b]
+WHERE [b].[Id] = @__p_0
+2025-08-04 04:06:28.498 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[DistanceInKm], [r].[Duration], [r].[FromCityId], [r].[ToCityId]
+FROM [Routes] AS [r]
+WHERE [r].[Id] = @__p_0
+2025-08-04 04:06:28.530 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime2), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Schedules] ([Id], [ArrivalTime], [BusId], [DepartureTime], [Price], [RouteId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-08-04 04:06:28.536 +05:30 [INF] Executing ObjectResult, writing value of type 'AuthService.Application.DTOs.ResponseDto`1[[AuthService.Application.DTOs.Schedule.ScheduleDto, AuthService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 04:06:28.541 +05:30 [INF] Executed action AuthService.API.Controllers.ScheduleController.Create (AuthService.API) in 91.3951ms
+2025-08-04 04:06:28.549 +05:30 [INF] Executed endpoint 'AuthService.API.Controllers.ScheduleController.Create (AuthService.API)'
+2025-08-04 04:06:28.551 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7195/api/Schedule - 201 null application/json; charset=utf-8 117.1073ms

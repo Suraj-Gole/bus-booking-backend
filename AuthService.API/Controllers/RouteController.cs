@@ -1,4 +1,4 @@
-﻿using AuthService.Application.DTOs.Bus;
+﻿using AuthService.Application.DTOs.Route;
 using AuthService.Application.Helpers;
 using AuthService.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -8,21 +8,21 @@ namespace AuthService.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BusController : ControllerBase
+    public class RouteController : ControllerBase
     {
-        private readonly IBusService _busService;
+        private readonly IRouteService _routeService;
 
-        public BusController(IBusService busService)
+        public RouteController(IRouteService routeService)
         {
-            _busService = busService;
+            _routeService = routeService;
         }
 
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
-            var buses = await _busService.GetAllAsync();
-            var response = ResponseBuilder.Success(buses, "Fetched all buses");
+            var routes = await _routeService.GetAllAsync();
+            var response = ResponseBuilder.Success(routes, "Fetched all routes");
             return StatusCode(response.Status, response);
         }
 
@@ -30,17 +30,17 @@ namespace AuthService.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var bus = await _busService.GetByIdAsync(id);
-            var response = ResponseBuilder.Success(bus, "Fetched bus details");
+            var route = await _routeService.GetByIdAsync(id);
+            var response = ResponseBuilder.Success(route, "Fetched route details");
             return StatusCode(response.Status, response);
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([FromBody] CreateBusRequest request)
+        public async Task<IActionResult> Create([FromBody] CreateRouteRequest request)
         {
-            var createdBus = await _busService.CreateAsync(request);
-            var response = ResponseBuilder.Success(createdBus, "Bus created successfully", 201);
+            var route = await _routeService.CreateAsync(request);
+            var response = ResponseBuilder.Success(route, "Route created successfully", 201);
             return StatusCode(response.Status, response);
         }
 
@@ -48,8 +48,8 @@ namespace AuthService.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _busService.DeleteAsync(id);
-            var response = ResponseBuilder.Success<object>(null, "Bus deleted successfully", 200);
+            await _routeService.DeleteAsync(id);
+            var response = ResponseBuilder.Success<object>(null, "Route deleted");
             return StatusCode(response.Status, response);
         }
     }

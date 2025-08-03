@@ -6,6 +6,6 @@
         public required string BusNumber { get; set; }
         public required string Type { get; set; } // AC, Non-AC, Sleeper, etc.
         public int Capacity { get; set; }
-        //public ICollection<Schedule> Schedules { get; set; }
+        public ICollection<Schedule>? Schedules { get; set; }
     }
 }
