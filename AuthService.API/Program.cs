@@ -1,11 +1,20 @@
 using System.Text;
+using AuthService.API.Extensions;
 using AuthService.API.Middleware;
 using AuthService.Application.Interfaces;
 using AuthService.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -74,6 +83,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseGlobalMiddlewares();
 app.UseMiddleware<JwtDecryptionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();

@@ -1,4 +1,5 @@
 ﻿using AuthService.Application.DTOs.Bus;
+using AuthService.Application.Helpers;
 using AuthService.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,8 @@ namespace AuthService.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var buses = await _busService.GetAllAsync();
-            return Ok(buses);
+            var response = ResponseBuilder.Success(buses, "Fetched all buses");
+            return StatusCode(response.Status, response);
         }
 
         [HttpGet("{id}")]
@@ -29,7 +31,8 @@ namespace AuthService.API.Controllers
         public async Task<IActionResult> GetById(Guid id)
         {
             var bus = await _busService.GetByIdAsync(id);
-            return Ok(bus);
+            var response = ResponseBuilder.Success(bus, "Fetched bus details");
+            return StatusCode(response.Status, response);
         }
 
         [HttpPost]
@@ -37,7 +40,8 @@ namespace AuthService.API.Controllers
         public async Task<IActionResult> Create([FromBody] CreateBusRequest request)
         {
             var createdBus = await _busService.CreateAsync(request);
-            return CreatedAtAction(nameof(GetById), new { id = createdBus.Id }, createdBus);
+            var response = ResponseBuilder.Success(createdBus, "Bus created successfully", 201);
+            return StatusCode(response.Status, response);
         }
 
         [HttpDelete("{id}")]
@@ -45,7 +49,8 @@ namespace AuthService.API.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             await _busService.DeleteAsync(id);
-            return NoContent();
+            var response = ResponseBuilder.Success<object>(null, "Bus deleted successfully", 200);
+            return StatusCode(response.Status, response);
         }
     }
 }
