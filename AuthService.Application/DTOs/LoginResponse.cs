@@ -2,11 +2,11 @@
 {
     public class LoginResponse
     {
-        public string Token { get; set; }
-        public string Email { get; set; }
-        public string FullName { get; set; }
-        public string Role { get; set; }
-        public string RefreshToken { get; set; }
+        public required string Token { get; set; }
+        public required string Email { get; set; }
+        public required string FullName { get; set; }
+        public required string Role { get; set; }
+        public required string RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
     }
 }
