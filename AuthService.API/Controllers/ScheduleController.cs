@@ -1,5 +1,4 @@
 ﻿using AuthService.Application.DTOs.Schedule;
-using AuthService.Application.Helpers;
 using AuthService.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +20,7 @@ namespace AuthService.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
-            var schedules = await _scheduleService.GetAllAsync();
-            var response = ResponseBuilder.Success(schedules, "Fetched all schedules");
+            var response = await _scheduleService.GetAllAsync();
             return StatusCode(response.Status, response);
         }
 
@@ -30,8 +28,7 @@ namespace AuthService.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var schedule = await _scheduleService.GetByIdAsync(id);
-            var response = ResponseBuilder.Success(schedule, "Fetched schedule details");
+            var response = await _scheduleService.GetByIdAsync(id);
             return StatusCode(response.Status, response);
         }
 
@@ -39,8 +36,7 @@ namespace AuthService.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([FromBody] CreateScheduleRequest request)
         {
-            var schedule = await _scheduleService.CreateAsync(request);
-            var response = ResponseBuilder.Success(schedule, "Schedule created", 201);
+            var response = await _scheduleService.CreateAsync(request);
             return StatusCode(response.Status, response);
         }
 
@@ -48,8 +44,7 @@ namespace AuthService.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _scheduleService.DeleteAsync(id);
-            var response = ResponseBuilder.Success<object>(null, "Schedule deleted");
+            var response = await _scheduleService.DeleteAsync(id);
             return StatusCode(response.Status, response);
         }
     }
