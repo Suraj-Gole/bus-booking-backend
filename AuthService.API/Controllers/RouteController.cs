@@ -1,5 +1,4 @@
 ﻿using AuthService.Application.DTOs.Route;
-using AuthService.Application.Helpers;
 using AuthService.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +20,7 @@ namespace AuthService.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
-            var routes = await _routeService.GetAllAsync();
-            var response = ResponseBuilder.Success(routes, "Fetched all routes");
+            var response = await _routeService.GetAllAsync();
             return StatusCode(response.Status, response);
         }
 
@@ -30,8 +28,7 @@ namespace AuthService.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var route = await _routeService.GetByIdAsync(id);
-            var response = ResponseBuilder.Success(route, "Fetched route details");
+            var response = await _routeService.GetByIdAsync(id);
             return StatusCode(response.Status, response);
         }
 
@@ -39,8 +36,7 @@ namespace AuthService.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([FromBody] CreateRouteRequest request)
         {
-            var route = await _routeService.CreateAsync(request);
-            var response = ResponseBuilder.Success(route, "Route created successfully", 201);
+            var response = await _routeService.CreateAsync(request);
             return StatusCode(response.Status, response);
         }
 
@@ -48,8 +44,7 @@ namespace AuthService.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _routeService.DeleteAsync(id);
-            var response = ResponseBuilder.Success<object>(null, "Route deleted");
+            var response = await _routeService.DeleteAsync(id);
             return StatusCode(response.Status, response);
         }
     }

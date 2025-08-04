@@ -1,4 +1,5 @@
-﻿using AuthService.Application.DTOs.Route;
+﻿using AuthService.Application.DTOs;
+using AuthService.Application.DTOs.Route;
 using AuthService.Application.Interfaces;
 using AuthService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -14,24 +15,27 @@ namespace AuthService.Infrastructure.Services
             _context = context;
         }
 
-        public async Task<List<RouteDto>> GetAllAsync()
+        public async Task<ResponseDto<List<RouteDto>>> GetAllAsync()
         {
             var routes = await _context.Routes
                 .Include(r => r.FromCity)
                 .Include(r => r.ToCity)
+                .Select(r => new RouteDto
+                {
+                    Id = r.Id,
+                    FromCityId = r.FromCityId,
+                    FromCityName = r.FromCity.Name,
+                    ToCityId = r.ToCityId,
+                    ToCityName = r.ToCity.Name,
+                    DistanceInKm = r.DistanceInKm,
+                    Duration = r.Duration
+                })
                 .ToListAsync();
 
-            return routes.Select(r => new RouteDto
-            {
-                Id = r.Id,
-                FromCity = r.FromCity!.Name,
-                ToCity = r.ToCity!.Name,
-                DistanceInKm = r.DistanceInKm,
-                Duration = r.Duration
-            }).ToList();
+            return ResponseDto<List<RouteDto>>.SuccessResponse(routes);
         }
 
-        public async Task<RouteDto> GetByIdAsync(Guid id)
+        public async Task<ResponseDto<RouteDto>> GetByIdAsync(Guid id)
         {
             var route = await _context.Routes
                 .Include(r => r.FromCity)
@@ -39,28 +43,33 @@ namespace AuthService.Infrastructure.Services
                 .FirstOrDefaultAsync(r => r.Id == id);
 
             if (route == null)
-                throw new Exception("Route not found");
+                return ResponseDto<RouteDto>.FailResponse("Route not found", 404);
 
-            return new RouteDto
+            var routeDto = new RouteDto
             {
                 Id = route.Id,
-                FromCity = route.FromCity!.Name,
-                ToCity = route.ToCity!.Name,
+                FromCityId = route.FromCityId,
+                FromCityName = route.FromCity.Name,
+                ToCityId = route.ToCityId,
+                ToCityName = route.ToCity.Name,
                 DistanceInKm = route.DistanceInKm,
                 Duration = route.Duration
             };
+
+            return ResponseDto<RouteDto>.SuccessResponse(routeDto);
         }
 
-        public async Task<RouteDto> CreateAsync(CreateRouteRequest request)
+
+        public async Task<ResponseDto<RouteDto>> CreateAsync(CreateRouteRequest request)
         {
             if (request.FromCityId == request.ToCityId)
-                throw new Exception("From and To cities must be different.");
+                return ResponseDto<RouteDto>.FailResponse("Source and destination cities must be different", 400);
 
             var fromCity = await _context.Cities.FindAsync(request.FromCityId);
             var toCity = await _context.Cities.FindAsync(request.ToCityId);
 
             if (fromCity == null || toCity == null)
-                throw new Exception("One or both cities not found.");
+                return ResponseDto<RouteDto>.FailResponse("Invalid city selection", 404);
 
             var route = new Route
             {
@@ -73,17 +82,21 @@ namespace AuthService.Infrastructure.Services
             _context.Routes.Add(route);
             await _context.SaveChangesAsync();
 
-            return new RouteDto
+            var responseDto = new RouteDto
             {
                 Id = route.Id,
-                FromCity = fromCity.Name,
-                ToCity = toCity.Name,
+                FromCityId = route.FromCityId,
+                FromCityName = fromCity.Name,
+                ToCityId = route.ToCityId,
+                ToCityName = toCity.Name,
                 DistanceInKm = route.DistanceInKm,
                 Duration = route.Duration
             };
+
+            return ResponseDto<RouteDto>.SuccessResponse(responseDto, 201);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task<ResponseDto<string>> DeleteAsync(Guid id)
         {
             var route = await _context.Routes.FindAsync(id);
             if (route == null)
@@ -91,6 +104,7 @@ namespace AuthService.Infrastructure.Services
 
             _context.Routes.Remove(route);
             await _context.SaveChangesAsync();
+            return ResponseDto<string>.SuccessResponse("Route deleted successfully");
         }
     }
 }

@@ -11,6 +11,6 @@
         public decimal TotalAmount { get; set; }
 
         public DateTime BookingTime { get; set; }
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }
