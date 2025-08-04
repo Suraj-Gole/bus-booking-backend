@@ -1,4 +1,5 @@
-﻿using AuthService.Application.DTOs.Schedule;
+﻿using AuthService.Application.DTOs;
+using AuthService.Application.DTOs.Schedule;
 using AuthService.Application.Interfaces;
 using AuthService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -14,52 +15,18 @@ namespace AuthService.Infrastructure.Services
             _context = context;
         }
 
-        public async Task<List<ScheduleDto>> GetAllAsync()
+        public async Task<ResponseDto<ScheduleDto>> CreateAsync(CreateScheduleRequest request)
         {
-            var schedules = await _context.Schedules.ToListAsync();
-
-            return schedules.Select(s => new ScheduleDto
-            {
-                Id = s.Id,
-                BusId = s.BusId,
-                RouteId = s.RouteId,
-                DepartureTime = s.DepartureTime,
-                ArrivalTime = s.ArrivalTime,
-                Price = s.Price
-            }).ToList();
-        }
-
-        public async Task<ScheduleDto> GetByIdAsync(Guid id)
-        {
-            var s = await _context.Schedules.FindAsync(id);
-            if (s == null) throw new Exception("Schedule not found");
-
-            return new ScheduleDto
-            {
-                Id = s.Id,
-                BusId = s.BusId,
-                RouteId = s.RouteId,
-                DepartureTime = s.DepartureTime,
-                ArrivalTime = s.ArrivalTime,
-                Price = s.Price
-            };
-        }
-
-        public async Task<ScheduleDto> CreateAsync(CreateScheduleRequest request)
-        {
-            // Fetch required Bus and Route entities from the database
             var bus = await _context.Buses.FindAsync(request.BusId);
-            if (bus == null) throw new Exception("Bus not found");
-
             var route = await _context.Routes.FindAsync(request.RouteId);
-            if (route == null) throw new Exception("Route not found");
+
+            if (bus == null || route == null)
+                return ResponseDto<ScheduleDto>.FailResponse("Invalid Bus or Route", 400);
 
             var schedule = new Schedule
             {
                 BusId = request.BusId,
-                Bus = bus,
                 RouteId = request.RouteId,
-                Route = route,
                 DepartureTime = request.DepartureTime,
                 ArrivalTime = request.ArrivalTime,
                 Price = request.Price
@@ -68,7 +35,7 @@ namespace AuthService.Infrastructure.Services
             _context.Schedules.Add(schedule);
             await _context.SaveChangesAsync();
 
-            return new ScheduleDto
+            var scheduleDto = new ScheduleDto
             {
                 Id = schedule.Id,
                 BusId = schedule.BusId,
@@ -77,15 +44,57 @@ namespace AuthService.Infrastructure.Services
                 ArrivalTime = schedule.ArrivalTime,
                 Price = schedule.Price
             };
+
+            return ResponseDto<ScheduleDto>.SuccessResponse(scheduleDto, 201);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task<ResponseDto<List<ScheduleDto>>> GetAllAsync()
         {
-            var s = await _context.Schedules.FindAsync(id);
-            if (s == null) throw new Exception("Schedule not found");
+            var schedules = await _context.Schedules
+                .Select(s => new ScheduleDto
+                {
+                    Id = s.Id,
+                    BusId = s.BusId,
+                    RouteId = s.RouteId,
+                    DepartureTime = s.DepartureTime,
+                    ArrivalTime = s.ArrivalTime,
+                    Price = s.Price
+                })
+                .ToListAsync();
 
-            _context.Schedules.Remove(s);
+            return ResponseDto<List<ScheduleDto>>.SuccessResponse(schedules);
+        }
+
+        public async Task<ResponseDto<ScheduleDto>> GetByIdAsync(Guid id)
+        {
+            var schedule = await _context.Schedules.FindAsync(id);
+
+            if (schedule == null)
+                return ResponseDto<ScheduleDto>.FailResponse("Schedule not found", 404);
+
+            var dto = new ScheduleDto
+            {
+                Id = schedule.Id,
+                BusId = schedule.BusId,
+                RouteId = schedule.RouteId,
+                DepartureTime = schedule.DepartureTime,
+                ArrivalTime = schedule.ArrivalTime,
+                Price = schedule.Price
+            };
+
+            return ResponseDto<ScheduleDto>.SuccessResponse(dto);
+        }
+
+        public async Task<ResponseDto<string>> DeleteAsync(Guid id)
+        {
+            var schedule = await _context.Schedules.FindAsync(id);
+            if (schedule == null)
+                return ResponseDto<string>.FailResponse("Schedule not found", 404);
+
+            _context.Schedules.Remove(schedule);
             await _context.SaveChangesAsync();
+
+            return ResponseDto<string>.SuccessResponse("Schedule deleted successfully");
         }
     }
 }
